@@ -1,0 +1,11 @@
+"workshopitem"
+{
+    "appid"            "3167020"
+    "publishedfileid"  "0"
+    "contentfolder"    "D:\Codex-project\GameMod\Duckov\TotemStorageBag\publish\TotemStorageBag"
+    "previewfile"      "D:\Codex-project\GameMod\Duckov\TotemStorageBag\assets\preview.png"
+    "visibility"       "0"
+    "title"            "图腾卷轴（图腾收纳包）"
+    "description"      "8 格图腾收纳容器，只能容纳图腾类物品；工作台用任意三个Ⅲ级图腾 + 20 虚化的羽毛 + 2000 合成费制作。"
+    "changenote"       "v1.0 首次发布"
+}

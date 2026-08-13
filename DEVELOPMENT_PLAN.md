@@ -23,6 +23,7 @@
 | Mod 部署目录 | `<游戏根>\Duckov_Data\Mods\TotemStorageBag\` |
 | 游戏日志 | `%userprofile%\AppData\LocalLow\TeamSoda\Duckov\Player.log` |
 | 图腾价格导出 | `<Mod 部署目录>\TotemPrices.txt`（运行期自动生成） |
+| 创意工坊物品 | ID `3782761775`（https://steamcommunity.com/sharedfiles/filedetails/?id=3782761775 ） |
 
 ## 3. 技术栈与版本
 
@@ -126,7 +127,7 @@
 - 收纳包专属模型/图标（当前使用钥匙包/默认图标）
 - 物品操作后的“一瞬间刷新”：已定位为游戏原生行为（过滤网格整页重建）。方案 A 静默重建补丁已实施（复用格子、无加载指示/淡入淡出），待用户实测确认；方案 B（增量插入/移除格子）留待后续版本
 - 制作材料定价复核与价格清单维护
-- 创意工坊发布（当前仅本地部署）
+- 创意工坊发布：已完成首次发布（ID 3782761775）；后续更新走 `publish.ps1` + steamcmd；待补一张 512×512 以上工坊封面图（当前 94×92 偏小）
 - 游戏版本更新后的兼容性复查（反射 / Harmony 补丁易失效）
 
 ## 11. 卸载/存档注意事项

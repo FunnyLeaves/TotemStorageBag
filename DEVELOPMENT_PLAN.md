@@ -121,16 +121,58 @@
 - Mod 激活、图腾收纳包物品、8 格图腾容器、工作台“其他”分区配方
 - 任意三个Ⅲ级图腾 + 20 羽毛 + 2000 合成费的制作校验与消耗
 - 图标计数（0/3）、悬停描述、ShowInventoryCount 计数修正
+- 自定义图标（图腾卷轴.png，方形留边）、1.0kg 重量、品质/显示品质 6（浅红底色）、本地化去星号
+- 工作台可制作判定变绿（EconomyManager.IsEnough 补丁）、过滤网格静默重建（方案 A）
 
 待办：
 
-- 收纳包专属模型/图标（当前使用钥匙包/默认图标）
+- 专属 3D 模型与更多外观自定义（当前为 2D 自定义图标）
 - 物品操作后的“一瞬间刷新”：已定位为游戏原生行为（过滤网格整页重建）。方案 A 静默重建补丁已实施（复用格子、无加载指示/淡入淡出），待用户实测确认；方案 B（增量插入/移除格子）留待后续版本
 - 制作材料定价复核与价格清单维护
-- 创意工坊发布：已完成首次发布（ID 3782761775）；后续更新走 `publish.ps1` + steamcmd；待补一张 512×512 以上工坊封面图（当前 94×92 偏小）
+- 创意工坊 v1.0.1：512×512 封面与说明已更新到本地与 GitHub，待重跑 steamcmd 上传使工坊页面生效
 - 游戏版本更新后的兼容性复查（反射 / Harmony 补丁易失效）
 
 ## 11. 卸载/存档注意事项
 
 - 本 Mod 的物品是运行时动态注册（TypeID 1651/1652），存档依赖 Mod：关闭 Mod 后，仓库/背包中该位置会显示为 0 价值、0 作用的空图标，属游戏对未注册 TypeID 的正常兜底表现；重新启用 Mod 后物品恢复。
 - 卸载 Mod 前先出售或移除图腾卷轴，避免留下空图标。
+
+## 12. 交接摘要（新对话入口）
+
+新对话接手本项目的速览，详细规则见上文各节。
+
+### 身份与地址
+
+- 项目：TotemStorageBag（游戏内道具名：图腾卷轴；项目名不变）
+- 游戏：Escape from Duckov（Steam AppID 3167020）
+- GitHub：`FunnyLeaves/TotemStorageBag`（main 分支；最新 v1.0.1，commit `78b7d24`）
+- 创意工坊：ID `3782761775`（标题：图腾卷轴（图腾收纳包））
+- 项目根目录：`D:\Codex-project\GameMod\Duckov\TotemStorageBag`
+
+### 关键路径
+
+| 用途 | 路径 |
+|---|---|
+| 源码 | `src\DuckovMod\DuckovMod\`（DuckovMod.csproj、MainMod.cs、DuckovMod.sln） |
+| 发布文件夹 | `publish\TotemStorageBag\`（由 `publish.ps1` 生成，默认 Release） |
+| 素材 | `assets\`（图腾卷轴.png 图标、preview.png 512×512 封面、info.ini、ModConfig.json） |
+| 本地部署 | `E:\steam\steamapps\common\Escape from Duckov\Duckov_Data\Mods\TotemStorageBag\` |
+| 游戏日志 | `%userprofile%\AppData\LocalLow\TeamSoda\Duckov\Player.log` |
+
+### 当前功能
+
+- 8 格图腾容器（TypeID 1651），只容纳 Totem 标签物品；原始价值 18888（售价 9444），可出售不可购买
+- 工作台“其他”分区配方：3×占位“图腾:任意Ⅲ级”（TypeID 1652）+ 20 虚化的羽毛（TypeID 368）+ 2000 钱
+- 制作补丁：任意 3 个Ⅲ级图腾（Totem 标签且名称含“Ⅲ”，22 种），只消耗角色背包、优先价格较低者、同价随机
+- UI：悬停描述/计数（0/3）、ShowInventoryCount 计数修正、工作台可制作判定变绿、过滤网格静默重建（方案 A）
+- 自定义图标（方形留边）、重量 1.0kg、品质/显示品质 6（“价值稀有度”Mod 映射为钥匙包同款浅红底色）
+- 本地化覆盖去星号；主菜单 Mod 名“图腾卷轴（图腾收纳包）”
+
+### 操作注意
+
+- 发版流程：改代码 → `.\publish.ps1` → 本地测试 → git 提交推送 → `D:\APP\SteamCMD\steamcmd.exe +login <Steam用户名> +workshop_build_item <vdf> +quit`（保持 Steam++ 关闭，手机 App 确认登录）
+- git 推送若报 SSL 证书错误（Steam++/网络拦截）：`git -c http.sslVerify=false push`，或先关 Steam++
+- 不要同时启用本地部署与工坊订阅的同名 Mod，避免重复注册冲突
+- 0Harmony.dll 不入库，`publish.ps1` 从本地部署目录复制
+- 沙箱 git 若报 “dubious ownership”：`git config --global --add safe.directory D:/Codex-project/GameMod/Duckov/TotemStorageBag`
+- 新对话打开 Codex 时，工作区根目录须指向本项目新路径；旧路径 `D:\Codex-project\project1-GameMod` 已清空，归档后可删除
